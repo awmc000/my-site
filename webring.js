@@ -38,8 +38,8 @@ else
     WebRing[PrevInRing].href + '" target="_top"><img '+ 
     'src="http://amccolm.codes/go-previous.png"'+ 
     ' alt="Previous" title="Previous site" /></A></td> <td>' + 
-    '<a target="_blank" href="https://dotcomboom.neocities.org/linux/ring.html">'+ 
-    '<img src="https://dotcomboom.neocities.org/linux/tux.png" width="16"'+ 
+    '<a target="_blank" href="http://amccolm.codes/webring.html">'+ 
+    '<img src="http://amccolm.codes/bunny-hop-right.png" width="16"'+ 
     ' height="16" alt="Linux Webring" title="Linux Webring" /></a></td>'+ 
     '<td><A href="' + WebRing[NextInRing].href + '" target="_top">'+ 
     '<img src="http://amccolm.codes/go-next.png"'+ 
