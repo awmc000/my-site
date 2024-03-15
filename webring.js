@@ -40,7 +40,9 @@ else
     ' alt="Previous" title="Previous site" /></A></td> <td>' + 
     '<a target="_blank" href="http://amccolm.codes/webring.html">'+ 
     '<img src="http://amccolm.codes/bunny-hop-right.png" width="16"'+ 
-    ' height="16" alt="VIU Webring" title="VIU Webring" /></a></td>'+ 
+    ' height="16" alt="VIU Webring" title="VIU Webring" />' + 
+    'VIU Webring<img src="http://amccolm.codes/bunny-hop-right.png" width="16"'+ 
+    ' height="16" alt="VIU Webring" title="VIU Webring" /></a></td> '+ 
     '<td><A href="' + WebRing[NextInRing].href + '" target="_top">'+ 
     '<img src="http://amccolm.codes/go-next.png"'+ 
     ' alt="Next" title="Next site" /></a></td></tr></table></div>');
