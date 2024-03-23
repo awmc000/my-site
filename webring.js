@@ -14,8 +14,9 @@ var WhereInRing = 0,
     NumInWebRing = 0,
     WebRing = new Array();
 
-Add("http://amccolm.codes/");
-Add("http://larsenml.net/");
+Add("https://amccolm.codes/");
+Add("https://larsenml.net/");
+Add("https://mcdermid.dev");
 
 if (WhereInRing == 0) WhereInRing = 1;
 
