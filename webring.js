@@ -1,4 +1,5 @@
 /* https://www.irt.org/articles/js085/ */
+/* Thanks DotComBoom for this code */
 function Add(href) {
     WebRing[++NumInWebRing] = new WebRingObject(href);
     if (location.href.indexOf(href) > -1)
@@ -14,8 +15,7 @@ var WhereInRing = 0,
     WebRing = new Array();
 
 Add("http://amccolm.codes/");
-Add("http://amccolm.codes/");
-Add("http://amccolm.codes/");
+Add("http://larsenml.net/");
 
 if (WhereInRing == 0) WhereInRing = 1;
 
@@ -36,12 +36,12 @@ else
     '; height: 31px; text-align: center;"><table style="width: 88px; '+ 
     'height: 31px;" class="linux-webring-table"><tr><td><a href="' + 
     WebRing[PrevInRing].href + '" target="_top"><img '+ 
-    'src="http://amccolm.codes/go-previous.png"'+ 
+    'src="https://amccolm.codes/go-previous.png"'+ 
     ' alt="Previous" title="Previous site" /></A></td> <td>' + 
-    '<a target="_blank" href="http://amccolm.codes/webring.html">'+ 
-    '<img src="http://amccolm.codes/bunny-hop-right.png" width="16"'+ 
+    '<a target="_blank" href="https://amccolm.codes/webring.html">'+ 
+    '<img src="https://amccolm.codes/bunny-hop-right.png" width="16"'+ 
     ' height="16" alt="VIU Webring" title="VIU Webring" /></a></td>'+ 
     '<td><A href="' + WebRing[NextInRing].href + '" target="_top">'+ 
-    '<img src="http://amccolm.codes/go-next.png"'+ 
+    '<img src="https://amccolm.codes/go-next.png"'+ 
     ' alt="Next" title="Next site" /></a></td></tr></table></div>');
 
