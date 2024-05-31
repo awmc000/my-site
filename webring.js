@@ -16,6 +16,7 @@ var WhereInRing = 0,
 
 Add("https://amccolm.codes/");
 Add("https://mcdermid.dev");
+Add("https://rufuyun.neocities.org");
 
 if (WhereInRing == 0) WhereInRing = 1;
 
