@@ -14,6 +14,16 @@ th, td {
     padding: 5px;
 }
 
+table td {
+    vertical-align: top;
+    padding-top: 10px;  /* Adjust this value as needed */
+}
+  
+table td ul {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .title {
     width: 600px;
     margin-left:100px;
