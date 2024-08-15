@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 <title>amccolm - VIU Webring</title>
 <meta charset="UTF-8">
 
@@ -15,14 +15,16 @@
 
 <div class="navbar">
 	<ul class="navul">
-		<li class="navli"><a href="index.html">Home</a></li>
-		<li class="navli"><a href="resume.html">Resume</a></li>
-		<li class="navli"><a href="about.html">About</a></li>
-		<li class="navli"><a href="projects.html">Projects</a></li>
-		<li class="navli"><a href="articles.html">Articles</a></li>
+		<li class="navli"><a href="../index.html">Home</a></li>
+		<li class="navli"><a href="../resume.html">Resume</a></li>
+		<li class="navli"><a href="../about.html">About</a></li>
+		<li class="navli"><a href="../projects.html">Projects</a></li>
+		<li class="navli"><a href="../articles.html">Articles</a></li>
 	</ul>
+</div>
 
 <div class="maincontent">
+    <h2>Notes on writing my CHIP8 interpreter</h2>
     <p>Over the summer I've been building a CHIP8 interpreter.
         This is the recommended entry point to emulator development,
         and it doesn't take awfully long. I'm 26 hours in on mine and
@@ -55,11 +57,17 @@
         after having taken a break from this project and this was all that stood 
         between me and the games being playable.
     </p>
+    <p>
+        Anyways, I think the experience of troubleshooting these bugs, and giving
+        a close read to how the instructions are supposed to behave, will help me
+        make these kinds of mistakes less often in the future and fix them faster.
+    </p>
 
     <p>
         <b>Wasteful way of simulating clock speed.</b>
         The interpreter itself has a function "cycle()" that the frontend calls.
         My frontend uses a high precision C++ timer to count up to 1429 microseconds,
+        because this gets the desired clock speed,
         run a cycle, and redraw the display if the draw flag is set, etc. This could
         and will be done better. I plan to rewrite the logic a bit so that cycles are executed
         as fast as possible up to when the draw flag is set next.
