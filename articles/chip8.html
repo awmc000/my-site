@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<title>amccolm - VIU Webring</title>
+<meta charset="UTF-8">
+
+</head>
+
+<body>
+
+<div class="title">
+	<h1>Alex McColm</h1>
+</div>
+
+<div class="navbar">
+	<ul class="navul">
+		<li class="navli"><a href="index.html">Home</a></li>
+		<li class="navli"><a href="resume.html">Resume</a></li>
+		<li class="navli"><a href="about.html">About</a></li>
+		<li class="navli"><a href="projects.html">Projects</a></li>
+		<li class="navli"><a href="articles.html">Articles</a></li>
+	</ul>
+
+<div class="maincontent">
+    <p>Over the summer I've been building a CHIP8 interpreter.
+        This is the recommended entry point to emulator development,
+        and it doesn't take awfully long. I'm 26 hours in on mine and
+        more experienced programmers have done it faster.
+    </p>
+    <p>
+        It's a very fun project especially if you are fascinated with
+        retro computing and assembly language. I think the mistakes I
+        made are the most interesting part. Over the course of the project
+        I made many little logic errors and also some sketchy design choices,
+        of which I've fixed all of the former type that I know about, and am
+        working on the second.
+    </p>
+
+    <p>
+        <b>Confusing different variables.</b>
+        The Chip8 programming language resembles a processor instruction
+        set but is simpler. Often an instruction includes a byte operand X.
+        In some instructions this byte is the operand and in others, the 
+        operand is in <i>register</i> X. It was very easy to trip up
+        and apply an operation to X when it should have been VX.
+    </p>
+    <p>
+        I found these and fixed them quickly for the most part. The one
+        I was stuck on the longest had to do with setting the frontend modifying
+        the keypad up/down flags. In the functions implementing instructions
+        which check if a key is up or down, I was checking for key X instead of 
+        <i>the key stored in VX</i>, and not only that, I was checking the registers
+        instead of the keypad flags. I just fixed this last week with fresh eyes
+        after having taken a break from this project and this was all that stood 
+        between me and the games being playable.
+    </p>
+
+    <p>
+        <b>Wasteful way of simulating clock speed.</b>
+        The interpreter itself has a function "cycle()" that the frontend calls.
+        My frontend uses a high precision C++ timer to count up to 1429 microseconds,
+        run a cycle, and redraw the display if the draw flag is set, etc. This could
+        and will be done better. I plan to rewrite the logic a bit so that cycles are executed
+        as fast as possible up to when the draw flag is set next.
+    </p>
+</div>
