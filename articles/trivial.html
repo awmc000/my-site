@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<title>amccolm - Implementing TFTP</title>
+<meta charset="UTF-8">
+
+</head>
+
+<body>
+
+<div class="title">
+	<h1>Alex McColm</h1>
+</div>
+
+<div class="navbar">
+	<ul class="navul">
+		<li class="navli"><a href="../index.html">Home</a></li>
+		<li class="navli"><a href="../resume.html">Resume</a></li>
+		<li class="navli"><a href="../about.html">About</a></li>
+		<li class="navli"><a href="../projects.html">Projects</a></li>
+		<li class="navli"><a href="../articles.html">Articles</a></li>
+	</ul>
+</div>
+
+<div class="maincontent">
+    <p>
+        <a href="https://www.rfc-editor.org/info/rfc1350">RFC 1350, the Internet standard
+            which describes the Trivial File Transfer Protocol (TFTP).
+        </a>
+    </p>
+    <p>
+		<a href="https://github.com/awmc000/trivial">Link to the repository.</a>
+	</p>
+    <h2>I totally loved my computer networking class.</h2>
+    <p>
+        This spring semester I took a 4th year course in Computer Networking. For the
+        lab component we were given headers and unit tests and from that implemented
+        an FTP client in stages, and then an FTP server. For the lecture component we
+        worked our way up the OSI model from physical considerations like single mode
+        vs. multi mode fibre, to flow control algorithms like Go Back N, all the way up
+        to reviewing how a recursive resolver works in DNS.
+    </p>
+    <h2>Going deeper with a personal project</h2>
+    <p>
+        Building basic stuff from scratch seems to be a great learning exercise in
+        programming. Building your own RDBMS, build your own HTTP server, etc. There's 
+        a platform taking advantage of that now called CodeCrafters, but I'm not 
+        going to use that. It seems even better if I write my own tests and whatnot.
+    </p>
+    <p>
+        When I found out about TFTP I was interested right away because of the "T". It's
+        a file transfer protocol, but a lot simpler than FTP, and actually used in real life,
+        OK, cool! And it came with a spec in the form of an RFC, so I didn't have to design
+        the logic. I'd also get good practice implementing other people's ideas.
+    </p>
+    <p>
+        I decided to use Python instead of the C++ (really just C with stdio) that we were
+        writing in networking class. The reason for this is that it's syntactically easy and
+        allows me to abstract away from a lot of headaches like FD_SET, populating structs, etc.
+        I also have a notion that the bottleneck is probably network IO. Still, it would be cool to
+        rewrite this all in C once it's working.
+    </p>
+    <p>
+        I've been the tests first. So far, am only using Python standard library modules, and am trying
+        to keep things simple. I'll outline a few areas where I'm fighting complexity.
+    </p>
+    <h2>Complexity and bugs so far</h2>
+    <p>
+        In order to write the best tests I've accepted two complexities. The first is that I do NOT want
+        the client tests to require the server and vice versa; I do not want the tests to be coupled. That
+        means manually and redundantly faking out all the server logic, using UDP sockets, in each test case.
+        I have also brought in threads even though I am a bit of a noob with them.
+    </p>
+    <p>
+        Probably the most interesting bug I created so far was in the server tests. At the start of a given
+        server test, I start a separate thread where the server waits for and serves requests. Then I create
+        a client socket that manually carries out client behaviour.
+    </p>
+    <p>
+        A more experienced developer could probably see where the issue arises just in that sentence. A race
+        condition led to a flaky test. Sometimes the client would send a request to the server, and sometimes
+        the server was not yet able to bind, and the client would actually get back an ICMP Port Unreachable
+        message. I only found out about that ICMP message by using Wireshark to snoop on my loopback adapter
+        when this flaky test ran. That was the first time I used Wireshark to solve a problem, too, which was
+        sick.
+    </p>
+    <p>
+        This taught me that even though UDP is connectionless, there actually <i>is</i> an error returned if
+        you fire a datagram and the port at the other end doesn't have an application bound to it to receive
+        the datagram. And more importantly, the race condition seems so obvious in hindsight, where the client
+        and server are racing to bind... so I won't make that particular mistake again.
+    </p>
+    <h2>Gonna try and finish this thing!</h2>
+    <p>
+        I've been working in fits and starts on this over the last month and a half - I probably wrote 25% the 
+        week before finals and another 50% since then. The end is in sight. I hope to fully complete this thing,
+        since it has a small scope too, within the next 2 weeks.
+    </p>
+
+</div>
