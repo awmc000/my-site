@@ -2,12 +2,36 @@
 <html>
   <head>
     <title>Payworks 2 Google Calendar Auth</title>
+    <style>
+      body {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+      }
+
+      .contentbox {
+        margin-inline: auto;
+        background-color: white;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 10px;
+        max-width: 400px;
+        overflow-wrap: break-word;
+      }
+    </style>
   </head>
   <body>
-    <h1>Payworks 2 Google Calendar Auth</h1>
-    <p><span id="authParams">params</span></p>
-    <p><span id="authCode">params</span></p>
-    <p><span id="authState">params</span></p>
+    <div class="contentbox">
+      <h1>P2GC Auth Redirect</h1>
+      <img src="p2gc-64.png">
+      <p>params: <code><span id="authParams"></span></code></p>
+      <p>code: <code><span id="authCode"></span></code></p>
+      <p>state: <code><span id="authState"></span></code></p>
+      <i>
+        <marquee>
+          <h2>You will be redirected shortly :)</h2>
+        </marquee>
+      </i>
+    </div>
     <script>
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
@@ -16,8 +40,16 @@
       console.log(code);
       console.log(state);
       document.getElementById('authParams').textContent = params;
-      document.getElementById('authCode').textContent = params;
-      document.getElementById('authState').textContent = params;
+      document.getElementById('authCode').textContent = code;
+      document.getElementById('authState').textContent = state;
+      window.opener?.postMessage(
+        {
+          type: "oauth2_callback",
+          code: code,
+          state: state,
+        },
+        "*"
+      );
     </script>
   </body>
 </html>
