@@ -26,6 +26,7 @@
       <p>params: <code><span id="authParams"></span></code></p>
       <p>code: <code><span id="authCode"></span></code></p>
       <p>state: <code><span id="authState"></span></code></p>
+      <a href="#" onclick="sendCallbackStuff()">post</a>
       <i>
         <marquee>
           <h2>You will be redirected shortly :)</h2>
@@ -42,14 +43,17 @@
       document.getElementById('authParams').textContent = params;
       document.getElementById('authCode').textContent = code;
       document.getElementById('authState').textContent = state;
-      window.opener?.postMessage(
-        {
-          type: "oauth2_callback",
-          code: code,
-          state: state,
-        },
-        "*"
-      );
+      const sendCallbackStuff = () => {
+        window.opener?.postMessage(
+          {
+            type: "oauth2_callback",
+            code: code,
+            state: state,
+          },
+          "*"
+        );
+      }
+      postMessage();
     </script>
   </body>
 </html>
