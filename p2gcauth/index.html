@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payworks 2 Google Calendar Auth</title>
+  </head>
+  <body>
+    <h1>Payworks 2 Google Calendar Auth</h1>
+    <p><span id="authParams">params</span></p>
+    <p><span id="authCode">params</span></p>
+    <p><span id="authState">params</span></p>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const state = params.get("state");
+      console.log(params);
+      console.log(code);
+      console.log(state);
+      document.getElementById('authParams').textContent = params;
+      document.getElementById('authCode').textContent = params;
+      document.getElementById('authState').textContent = params;
+    </script>
+  </body>
+</html>
